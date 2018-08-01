@@ -1,7 +1,7 @@
 import React from "react";
-// import {Route, Link, Switch } from "react-router-dom";
+import {Route, Link, Switch } from "react-router-dom";
 import axios from 'axios';
-import NewUser from "./NewUser";
+import NewUser from "./NewUser";  
 import UserProfile from "./UserProfile"
 
 class Login extends React.Component {
@@ -11,9 +11,6 @@ class Login extends React.Component {
       usernameInput: "",
       passwordInput: "",
       message: "",
-      // newUsernameInput:"",
-      // newpasswordInput: "",
-      // message2:"",
       toggleLogin:false,
       username:""
 
@@ -92,11 +89,36 @@ class Login extends React.Component {
     if (!this.state.toggleLogin) {
       return (
         <div>
-          <a style={{color: "red"}} onClick={this.logout}> Log Out </a>
+                  <div><Link to='/'><button >Home</button></Link></div>
 
-          <br></br>
-
-          <h1>Log In</h1>
+      <div className="login-wrap">
+          
+          {/* <div className="login-html">
+		
+    <input id="tab-1" type="radio" name="tab" className="sign-in" checked /><label for="tab-1" className="tab">Sign In</label>
+		<input id="tab-2" type="radio" name="tab" className="sign-up" /><label for="tab-2" className="tab">Sign Up</label>
+		<div className="login-form">
+			<div className="sign-in-htm">
+				<div className="group">
+					<label for="user" className="label">Username</label>
+					<input id="user" type="text" className="input" />
+				</div>
+				<div className="group">
+					<label for="pass" className="label">Password</label>
+					<input id="pass" type="password" className="input" data-type="password" />
+				</div>
+				<div className="group">
+					<input id="check" type="checkbox" className="check" checked />
+					<label for="check"><span className="icon"></span> Keep me Signed in</label>
+				</div>
+				<div className="group">
+					<input type="submit" className="button" value="Sign In" />
+				</div>
+				<div className="hr"></div>
+				<div className="foot-lnk">
+					<a href="#forgot">Forgot Password?</a>
+				</div>
+			</div> */}
 
           Username:
           <input type="text" value={usernameInput} onChange={this.handleUsernameChange}/>
@@ -112,6 +134,7 @@ class Login extends React.Component {
 
 
             <NewUser />
+            </div>
         </div>
       )
     } else {
@@ -124,6 +147,7 @@ class Login extends React.Component {
           <br></br>
 
           Welcome, {this.state.username}!
+          <UserProfile />
 
           <br></br>
 

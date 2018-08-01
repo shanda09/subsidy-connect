@@ -11,5 +11,5 @@ router.post('/login', passport.authenticate("local", {}), db.loginUser);
 router.post('/logout', loginRequired, db.logoutUser);
 router.get("/getAllListings", db.getAllListings);
 
-router.post('addApt',db.addApt )
+router.post('/addApt',db.addApt )
 module.exports = router;

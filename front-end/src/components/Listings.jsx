@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 
 
+
 class Listings extends React.Component {
   constructor() {
     super();
@@ -41,17 +42,26 @@ class Listings extends React.Component {
     {
       getAllListings.map(listing=>{
         return (
+         <div className='listings'>
           <li key={listing.id}>
+            <img className='aptImg'src={listing.picture} alt="picture of apartment goes here" />{" "}
+            
             <h3>{listing.title} For Rent</h3>
-            <img src={listing.picture} alt="picture of apartment goes here" />{" "}
-            <p>Subsidy: {listing.subsidy}</p>
 
-            <p>Address: {listing.address}</p>
-            <p>Rent: {listing.rent}</p>
-            <p>Number of Bedrooms: {listing.bedrooms}</p>
-            <p>Description: {listing.description}</p>
+              <div className='listingInfo'>
 
+            <li><p>Address: {listing.address}</p></li>
+
+            <li><p>Subsidy: {listing.subsidy}</p></li>
+
+           <li> <p>Rent: {listing.rent}</p></li>
+
+           <li> <p>Number of Bedrooms: {listing.bedrooms}</p></li>
+
+            <li><p>Description: {listing.description}</p></li>
+              </div>
           </li>
+          </div>
         )
       })
     }

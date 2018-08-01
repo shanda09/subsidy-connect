@@ -1,8 +1,8 @@
 import React from "react";
-// import {Route, Link, Switch } from "react-router-dom";
+import {Link } from "react-router-dom";
 import axios from 'axios';
 
-class Login extends React.Component {
+class UserProfile extends React.Component {
     constructor() {
       super();
       this.state = {
@@ -12,13 +12,22 @@ class Login extends React.Component {
         picture:"",
         description:"",
         rent:"",
+        title:"",
         message3:""
       }
     }
+
+    
+    handleInputChange = e => {
+        this.setState({
+          [e.target.name]: e.target.value
+        })
+      }
+
     handleForm = e => {
         e.preventDefault();
-        const { address,rent,description,bedroom,message3,picture,subsidy} = this.state;
-
+        const { address,rent,description,bedroom,message3,picture,subsidy,title} = this.state;
+        console.log(this.state);
         axios
         .post('/users/addApt',{
             address:address,
@@ -26,7 +35,9 @@ class Login extends React.Component {
             bedroom:bedroom,
             picture:picture,
             rent:rent,
-            description:description
+            title:title,
+            description:description,
+
         })
         .then(()=>{
             this.setState({
@@ -39,7 +50,7 @@ class Login extends React.Component {
                 message3:"success"
             })
         })
-        .cathc(err=>{
+        .catch(err=>{
             this.setState({
                 message3:"error posting"
             })
@@ -47,10 +58,70 @@ class Login extends React.Component {
     }
 
 render(){
-    const { address,rent,description,bedroom,message3,picture,subsidy} = this.state;
+    const { address,rent,description,bedroom,message3,picture,subsidy,title} = this.state;
 
     return(
-        <div></div>
+        <div>
+                  <div><Link to='Listings'><button >Listings</button></Link></div>
+
+            <form onSubmit={this.handleForm}>
+            <input 
+              type="text" 
+              onChange={this.handleInputChange}
+              placeholder="Name of Complex"
+              name="title"
+              value={title} />
+<input 
+              type="text" 
+              onChange={this.handleInputChange}
+              placeholder="Adress"
+              name="address"
+              value={address} />
+            <br />
+            <input 
+              type="text" 
+              onChange={this.handleInputChange}
+              placeholder="Rent"
+              name="rent"
+              value={rent} />
+            <br />
+            <input 
+              type="text" 
+              onChange={this.handleInputChange}
+              placeholder="Description"
+              name="description"
+              value={description} />
+            <br />
+            <input 
+              type="text" 
+              onChange={this.handleInputChange}
+              placeholder="Number of Bedrooms"
+              name="bedroom"
+              value={bedroom} />
+            <br />
+            <input 
+              type="text" 
+              onChange={this.handleInputChange}
+              placeholder="Picture Url"
+              name="picture"
+              value={picture} />
+            <br />
+            <input 
+              type="text" 
+              onChange={this.handleInputChange}
+              placeholder="Type of Subsidy"
+              name="subsidy"
+              value={subsidy} />
+            <br />
+
+
+            <button onClick={this.handleForm}>submit New Apartment</button>
+
+          </form>
+            
+        </div>
     )
 }
 }
+
+export default UserProfile;
