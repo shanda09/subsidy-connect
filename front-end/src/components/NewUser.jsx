@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios'; //because Newton said so
+import axios from 'axios'; 
 
 class NewUser extends React.Component {
   constructor() {
